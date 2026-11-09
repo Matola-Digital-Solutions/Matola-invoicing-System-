@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matola Digital Solutions | Quotations & Invoices</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header no-print">
+    <div class="brand">
+      <h1>Matola Digital Solutions</h1>
+      <p>Innovating Businesses Through Technology</p>
+    </div>
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-view="create">New document</button>
+      <button class="tab" data-view="saved">Saved <span id="savedCount" class="badge">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- CREATE / EDIT VIEW -->
+    <section id="view-create" class="view no-print">
+      <div id="formError" class="alert" role="alert" hidden></div>
+
+      <div class="panel">
+        <h2 id="formTitle">New document</h2>
+        <div class="grid">
+          <label>Document type
+            <select id="docType">
+              <option value="quotation">Quotation</option>
+              <option value="invoice">Invoice</option>
+            </select>
+          </label>
+          <label>Document number
+            <input id="docNumber" type="text" readonly>
+          </label>
+          <label>Date
+            <input id="docDate" type="date">
+          </label>
+          <label><span id="dueLabel">Valid until</span>
+            <input id="dueDate" type="date">
+          </label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Customer</h2>
+        <div class="grid">
+          <label>Customer name *
+            <input id="custName" type="text" autocomplete="name">
+          </label>
+          <label>Phone number
+            <input id="custPhone" type="tel" autocomplete="tel">
+          </label>
+          <label>Email address
+            <input id="custEmail" type="email" autocomplete="email">
+          </label>
+          <label class="wide">Address
+            <textarea id="custAddress" rows="2"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Services</h2>
+        <div id="items"></div>
+        <button type="button" id="addItem" class="btn secondary">+ Add service</button>
+      </div>
+
+      <div class="panel">
+        <h2>Totals</h2>
+        <label class="discount">Discount (%)
+          <input id="discount" type="number" min="0" max="100" step="0.01" value="0" inputmode="decimal">
+        </label>
+        <dl class="totals" id="liveTotals"></dl>
+        <label>Notes (optional)
+          <textarea id="notes" rows="3" placeholder="Payment terms, bank details, scope notes"></textarea>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="saveBtn" class="btn primary">Save &amp; preview</button>
+        <button type="button" id="resetBtn" class="btn secondary">Clear form</button>
+      </div>
+    </section>
+
+    <!-- SAVED VIEW -->
+    <section id="view-saved" class="view no-print" hidden>
+      <div class="panel">
+        <h2>Saved documents</h2>
+        <div id="savedList"></div>
+      </div>
+    </section>
+
+    <!-- PREVIEW VIEW -->
+    <section id="view-preview" class="view" hidden>
+      <div class="actions no-print">
+        <button type="button" id="printBtn" class="btn primary">Print / Save as PDF</button>
+        <button type="button" id="backBtn" class="btn secondary">Back</button>
+      </div>
+      <article id="previewDoc" class="document"></article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
